@@ -8,7 +8,7 @@
         (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
       <br><br>
       <ul class="list-group">
-        <div *ngIf="onlyOdd">
+        <div *appUnless="onlyOdd">
           <li
               class="list-group-item"
               [ngClass]="{odd: odd % 2 !== 0 }"
@@ -17,29 +17,44 @@
             {{odd}}
           </li>
         </div>
-        <div *ngIf="!onlyOdd">
+<!--        <div *ngIf="!onlyOdd">-->
+<!--          <li-->
+<!--            class="list-group-item"-->
+<!--            [ngClass]="{odd: odd % 2 == 0 }"-->
+<!--            [ngStyle]="{backgroundColor: odd % 2 == 0 ? 'purple' : 'green'}"-->
+<!--            *ngFor="let even of evenNumbers">-->
+<!--            {{ even }}-->
+<!--          </li>-->
+<!--        </div>-->
+<!--        <ng-template [ngIf]="!onlyOdd">-->
+<!--          <div>-->
+<!--            <li-->
+<!--              class="list-group-item"-->
+<!--              [ngClass]="{odd: odd % 2 == 0 }"-->
+<!--              [ngStyle]="{backgroundColor: odd % 2 == 0 ? 'purple' : 'green'}"-->
+<!--              *ngFor="let even of evenNumbers">-->
+<!--              {{ even }}-->
+<!--            </li>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+        <div *appUnless="!onlyOdd">
           <li
-            class="list-group-item"
-            [ngClass]="{odd: odd % 2 == 0 }"
-            [ngStyle]="{backgroundColor: odd % 2 == 0 ? 'purple' : 'green'}"
-            *ngFor="let even of evenNumbers">
-            {{ even }}
-          </li>
-        </div>
-        <ng-template [ngIf]="!onlyOdd">
-          <div>
-            <li
               class="list-group-item"
               [ngClass]="{odd: odd % 2 == 0 }"
               [ngStyle]="{backgroundColor: odd % 2 == 0 ? 'purple' : 'green'}"
               *ngFor="let even of evenNumbers">
               {{ even }}
             </li>
-          </div>
-        </ng-template>
+        </div>
       </ul>
       <!--NOTE: We are writing over the values of the colors of the background by putting it inside the element(not always a good practice-->
       <div [appBetterHighlight] ="'blue'" highlightColor="red">Style me with basic directive ?_? </div>
+    </div>
+    <div [ngSwitch]="value">
+      <p *ngSwitchCase ="5">Value is 5</p>
+      <p *ngSwitchCase ="10">Value is 10</p>
+      <p *ngSwitchCase ="100">Value is 100</p>
+      <p *ngSwitchCaseDefault>Value is Default</p>
     </div>
   </div>
 </div>
